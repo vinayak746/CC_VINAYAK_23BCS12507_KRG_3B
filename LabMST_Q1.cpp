@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 class Solution {
 public:
     bool can(vector<int>& nums, int max_op, int p){
@@ -33,3 +36,21 @@ public:
         return ans;
     }
 };
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++) {
+        cin >> nums[i];
+    }
+
+    int max_op;
+    cin >> max_op;
+
+    Solution sol;
+    cout << sol.minimumSize(nums, max_op) << "\n";
+
+    return 0;
+}
