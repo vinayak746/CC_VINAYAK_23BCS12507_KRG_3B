@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long solve(vector<int>& h, int target) {
+    long long odd = 0, even = 0;
+
+    for (auto x : h) {
+        int diff = target - x;
+        odd += diff % 2;
+        even += diff / 2;
+    }
+
+    if (odd > even) return 2 * odd - 1;
+    return max(2 * even, 2 * odd - 1);
+}
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n;
+        cin >> n;
+        vector<int> h(n);
+        for (auto &x : h) cin >> x;
+
+        int mx = *max_element(h.begin(), h.end());
+
+        cout << min(solve(h, mx), solve(h, mx + 1)) << endl;
+    }
+}

@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    map<long long, long long> m;
+
+    for (int i = 0; i < n; i++) {
+        long long l, r;
+        cin >> l >> r;
+        m[l]++;
+        m[r + 1]--;
+    }
+
+    vector<long long> res(n + 1, 0);
+
+    long long prev = 0, cnt = 0;
+    bool first = true;
+
+    for (auto &it : m) {
+        if (!first) {
+            res[cnt] += it.first - prev;
+        }
+        first = false;
+        cnt += it.second;
+        prev = it.first;
+    }
+
+    for (int i = 1; i <= n; i++) cout << res[i] << " ";
+}

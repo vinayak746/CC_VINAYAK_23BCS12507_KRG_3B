@@ -1,0 +1,30 @@
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int idx = 0;
+
+string solve(vector<string>& v) {
+    if (idx >= v.size()) return "";
+    if (v[idx] == "int") {
+        idx++;
+        return "int";
+    }
+    idx++;
+    string left = solve(v);
+    string right = solve(v);
+    if (left == "" || right == "") return "";
+    return "pair<" + left + "," + right + ">";
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<string> v(n);
+    for (int i = 0; i < n; i++) cin >> v[i];
+
+    string res = solve(v);
+    if (idx != n || res == "") cout << "Error occurred";
+    else cout << res;
+}
